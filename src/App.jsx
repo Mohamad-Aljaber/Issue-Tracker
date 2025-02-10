@@ -4,6 +4,7 @@ import Register from "./Pages/auth/register/register";
 function App() {
   return (
     <>
+    {/* <Login/> */}
       <Register />
     </>
   );
