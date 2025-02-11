@@ -1,11 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-// import App from "./App.jsx";
+import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Pages/auth/Login";
 import Register from "./Pages/auth/register/register";
 import { Typography } from "@mui/material";
+import Dashboard from "./Pages/dashboard/index.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -13,8 +14,12 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route
           path="/"
-          element={<Login />}
+          element={<App />}
         >
+          <Route
+            index
+            element={<Login />}
+          />
           <Route
             path="/Login"
             index
@@ -24,6 +29,11 @@ createRoot(document.getElementById("root")).render(
             path="/signup"
             index
             element={<Register />}
+          />
+          <Route
+            path="/dashboard"
+            index
+            element={<Dashboard />}
           />
           <Route
             path="*"
