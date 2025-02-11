@@ -1,11 +1,9 @@
-import Login from "./Pages/auth/Login";
-import Register from "./Pages/auth/register/register";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
-    {/* <Login/> */}
-      <Register />
+  <Outlet />
     </>
   );
 }
