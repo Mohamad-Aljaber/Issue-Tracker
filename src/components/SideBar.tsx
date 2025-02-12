@@ -20,20 +20,18 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-
 import StackedBarChartOutlinedIcon from "@mui/icons-material/StackedBarChartOutlined";
 import PieChartOutlinedIcon from "@mui/icons-material/PieChartOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import { useNavigate } from "react-router-dom"; // استيراد useNavigate
 
 const drawerWidth = 250;
 interface SideMenuProps {
   open: boolean;
   handleDrawerClose: () => void;
-  setHandleSection: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -83,27 +81,67 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const Array1 = [
-  { text: "Dashboard", icon: <HomeOutlinedIcon />, path: "/" },
-  { text: "Manga Team", icon: <PeopleAltOutlinedIcon />, path: "/" },
-  { text: "Contacts Informantion", icon: <ContactsOutlinedIcon />, path: "/" },
+  { text: "Dashboard", icon: <HomeOutlinedIcon />, path: "/dashboard" },
+  {
+    text: "Manga Team",
+    icon: <PeopleAltOutlinedIcon />,
+    path: "/dashboard/team",
+  },
+  {
+    text: "Contacts Information",
+    icon: <ContactsOutlinedIcon />,
+    path: "/dashboard/contacts",
+  },
 ];
+
 const Array2 = [
-  { text: "Profile From", icon: <Person2OutlinedIcon />, path: "/" },
-  { text: "Calender", icon: <CalendarMonthOutlinedIcon />, path: "/" },
-  { text: "FAQ Page", icon: <HelpOutlineOutlinedIcon />, path: "/" },
+  {
+    text: "Profile From",
+    icon: <Person2OutlinedIcon />,
+    path: "/dashboard/ProfileFrom",
+  },
+  {
+    text: "Calender",
+    icon: <CalendarMonthOutlinedIcon />,
+    path: "/dashboard/CalendarApp",
+  },
+  {
+    text: "FAQ Page",
+    icon: <HelpOutlineOutlinedIcon />,
+    path: "/dashboard/FAQ",
+  },
 ];
+
 const Array3 = [
-  { text: "Bar Chart", icon: <StackedBarChartOutlinedIcon />, path: "/" },
-  { text: "Pie Chart", icon: <PieChartOutlinedIcon />, path: "/" },
-  { text: "Line Chart", icon: <TimelineOutlinedIcon />, path: "/" },
+  {
+    text: "Bar Chart",
+    icon: <StackedBarChartOutlinedIcon />,
+    path: "/dashboard/BarChart",
+  },
+  {
+    text: "Pie Chart",
+    icon: <PieChartOutlinedIcon />,
+    path: "/dashboard/PieChart",
+  },
+  {
+    text: "Line Chart",
+    icon: <TimelineOutlinedIcon />,
+    path: "/dashboard/LineChart",
+  },
 ];
 
 const SideBar: React.FC<SideMenuProps> = ({
   open,
   handleDrawerClose,
-  setHandleSection,
+  
 }) => {
   const theme = useTheme();
+  const navigate = useNavigate(); 
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <Drawer
       variant="permanent"
@@ -164,7 +202,7 @@ const SideBar: React.FC<SideMenuProps> = ({
                 px: 2.5,
                 justifyContent: open ? "initial" : "center",
               }}
-              onClick={() => setHandleSection(prev => item.text)}
+              onClick={() => handleNavigation(item.path)} 
             >
               <ListItemIcon
                 sx={{
@@ -198,7 +236,7 @@ const SideBar: React.FC<SideMenuProps> = ({
                 px: 2.5,
                 justifyContent: open ? "initial" : "center",
               }}
-              onClick={() => setHandleSection(prev => item.text)}
+              onClick={() => handleNavigation(item.path)} 
             >
               <ListItemIcon
                 sx={{
@@ -232,7 +270,7 @@ const SideBar: React.FC<SideMenuProps> = ({
                 px: 2.5,
                 justifyContent: open ? "initial" : "center",
               }}
-              onClick={() => setHandleSection(prev => item.text)}
+              onClick={() => handleNavigation(item.path)}
             >
               <ListItemIcon
                 sx={{

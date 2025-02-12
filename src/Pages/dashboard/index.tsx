@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { getDesing } from "../../../public/theme";
+import { Outlet } from "react-router-dom";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,7 +24,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<PaletteMode>("dark");
-  const [handleSection, setHandleSection] = useState<string>("Dashboard");
   const theme = React.useMemo(() => createTheme(getDesing(mode)), [mode]);
 
   const handleDrawerOpen = () => {
@@ -34,29 +34,34 @@ const Dashboard = () => {
   };
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Box sx={{ display: "flex" }}>
-          <CssBaseline />
-          <TopBar
-            open={open}
-            handleDrawerOpen={handleDrawerOpen}
-            setMode={setMode}
-          />
-          <SideBar
-            open={open}
-            handleDrawerClose={handleDrawerClose}
-            setHandleSection={setHandleSection}
-          />
-          <Box
-            component="main"
-            sx={{ flexGrow: 1, p: 3 }}
-          >
-            <DrawerHeader />
-          </Box>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <TopBar
+          open={open}
+          handleDrawerOpen={handleDrawerOpen}
+          setMode={setMode}
+        />
+        <SideBar
+          open={open}
+          handleDrawerClose={handleDrawerClose}
+        />
+
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            backgroundColor: "background.default",
+            minHeight: "100vh",
+          }}
+        >
+          <DrawerHeader />
+
+          <Outlet />
         </Box>
-      </ThemeProvider>
-    </>
+      </Box>
+    </ThemeProvider>
   );
 };
 
