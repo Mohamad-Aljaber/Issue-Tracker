@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Pages/auth/Login";
 import Register from "./Pages/auth/register/register";
 import { Typography } from "@mui/material";
-import Dashboard from "./Pages/dashboard/index.jsx";
+import Dashboard from "./Pages/dashboard/index.tsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

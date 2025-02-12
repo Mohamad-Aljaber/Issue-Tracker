@@ -13,14 +13,13 @@ import {
 } from "@mui/material";
 import InputFieldWithIcon from "../../../components/InputFieldWithIcon";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // ✅ للتنقل بين الصفحات
+import { useNavigate } from "react-router-dom"; 
 
 export default function Register() {
   const theme = useTheme();
   const PMain = theme.palette.primary.main;
   const PDark = theme.palette.primary.dark;
-  const navigate = useNavigate(); // ✅ التنقل البرمجي
-
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     Name: "",
     Email: "",
